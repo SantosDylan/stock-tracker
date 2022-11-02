@@ -1,1 +1,4 @@
-<p>sentiment works!</p>
+<div class="h-9rounded-xl flex w-2/5 items-center justify-center rounded-xl bg-slate-50 p-4 shadow-lg"></div>
+
+<ng-container *ngIf="sentiment$ | async as sentiment; else loading"></ng-container>
+<ng-template #loading>Loading...</ng-template>

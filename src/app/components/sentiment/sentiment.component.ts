@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash';
-import { Stock } from 'src/app/shared/interfaces/stock.interface';
-import { StocksListService } from '../home/components/stocks-list/services/stocks-list/stocks-list.service';
+import { Observable } from 'rxjs';
+import { Sentiment } from 'src/app/shared/interfaces/sentiment.interface';
+import { SentimentService } from './services/sentiment.service';
 
 @Component({
   selector: 'app-sentiment',
@@ -10,17 +10,12 @@ import { StocksListService } from '../home/components/stocks-list/services/stock
   styleUrls: ['./sentiment.component.scss'],
 })
 export class SentimentComponent implements OnInit {
-  public selectedStock: Stock | undefined;
+  public sentiment$: Observable<Sentiment>;
 
-  constructor(private stockList: StocksListService, private route: ActivatedRoute) {}
+  constructor(private sentiment: SentimentService, private route: ActivatedRoute) {
+    this.sentiment$ = this.sentiment.getSentiment(this.route.snapshot.params['symbol']);
+  }
 
   ngOnInit(): void {
-    this.selectedStock = _.find(this.stockList.getStockList(), {symbol: this.route.snapshot.params['symbol']});
-    console.log(this.stockList.getStockList());
-    console.log( this.route.snapshot.params['symbol']);
-
-    
-    
-
   }
 }
