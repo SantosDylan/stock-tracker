@@ -37,7 +37,7 @@
           <div *ngIf="(stock.data?.percentChange || 0) < 0">
             <img class="down-color" src="assets/icons/trending_down.svg" />
           </div>
-          <span [id]="'sentiment' + stock.symbol" class="text-sm text-purple-400 cursor-pointer transition hover:scale-110">See sentiment details</span>
+          <span  [routerLink]="['/sentiment', stock.symbol]" [id]="'sentiment' + stock.symbol" class="text-sm text-purple-400 cursor-pointer transition hover:scale-110" >See sentiment details</span>
         </div>
         <div></div>
       </div>

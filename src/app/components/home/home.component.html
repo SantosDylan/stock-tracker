@@ -1,0 +1,21 @@
+<div class="flex h-screen w-screen flex-col items-center gap-2 bg-slate-200 p-4">
+    <div class="flex h-1/5 flex-col items-center gap-4 rounded-b-xl bg-slate-50 p-4 shadow-lg">
+      <h1 class="text-5xl text-slate-600">STOCK TRACKER</h1>
+      <span class="flex gap-1">
+        <p>Enter the symbol of a stock to track</p>
+        <p class="text-slate-500">(i.e. AAPL, TSLA, GOOGL)</p>
+      </span>
+      <div class="flex gap-4">
+        <input id="stockInput" type="text" maxlength="5" class="rounded-full border-2 border-slate-200" type="text" [(ngModel)]="stockInput" />
+        <button
+          id="trackBtn"
+          class="py-1 px-4 rounded-full text-white transition duration-200"
+          [ngClass]="{ 'bg-slate-200': stockInput === '', 'bg-purple-400': stockInput !== '' }"
+          [disabled]="stockInput === '' ? true : false"
+          (click)="trackIt(stockInput)">Track it !
+        </button>
+      </div>
+    </div>
+    <app-stocks-list></app-stocks-list>
+  </div>
+  
