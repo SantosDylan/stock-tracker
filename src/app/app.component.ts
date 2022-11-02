@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './shared/services/api/api.service';
 import { EnteredSymbolsService } from './shared/services/entered-symbols/entered-symbols.service';
 
 @Component({
@@ -10,14 +9,11 @@ import { EnteredSymbolsService } from './shared/services/entered-symbols/entered
 export class AppComponent implements OnInit {
   public stockInput: string = '';
 
-  constructor(private enteredSymbols: EnteredSymbolsService, private api: ApiService) {
-    this.api.getCompanyProfile('AAPL').subscribe(console.log);
+  constructor(private enteredSymbols: EnteredSymbolsService) {
   }
 
   ngOnInit(): void {
     this.enteredSymbols.loadEnteredSymbols();
-
-    this.enteredSymbols.getEnteredSymbols$().subscribe(console.log);
   }
 
   public trackIt(stockInput: string) : void {

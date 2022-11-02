@@ -1,1 +1,46 @@
-<p>stocks-list works!</p>
+<div *ngIf="stockList$ | async as stockList" class="grid gap-4 custom-grid w-full">
+  <div class="rounded-xl bg-slate-50 p-4 shadow-lg w-full" *ngFor="let stock of stockList">
+    <span *ngIf="!stock.isLoaded">Loading ...</span>
+    <div *ngIf="stock.isLoaded" class="flex flex-col gap-4">
+      <div class="flex justify-between">
+        <div class="flex gap-2 items-center">
+          <span class="text-xs px-2 bg-purple-400 flex items-center justify-center rounded-full text-white w-fit h-fit">{{ stock.symbol }}</span>
+          <span class="text-xl text-slate-600">{{ stock.data?.name }}</span>
+        </div>
+        <div>
+          <img class="w-6 cursor-pointer" src="assets/icons/close.svg" />
+        </div>
+      </div>
+      <div class="grid grid-perso-left-part">
+        <div class="grid grid-cols-2">
+          <div class="flex flex-col">
+            <span class="font-bold">Change today:</span>
+            <span>{{(stock.data?.percentChange || 0) > 0 ? '+' : ''}}{{ stock.data?.percentChange | number: '1.2-2' }}%</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold">Opening price:</span>
+            <span>{{ stock.data?.openingPrice | currency }}</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold">Current price:</span>
+            <span>{{ stock.data?.currentPrice | currency }}</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold">High price:</span>
+            <span>{{ stock.data?.highPrice | currency }}</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 items-center justify-center">
+          <div *ngIf="(stock.data?.percentChange || 0) > 0">
+            <img class="up-color" src="assets/icons/trending_up.svg" />
+          </div>
+          <div *ngIf="(stock.data?.percentChange || 0) < 0">
+            <img class="down-color" src="assets/icons/trending_down.svg" />
+          </div>
+          <span class="text-sm text-purple-400 cursor-pointer">See sentiment details</span>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>

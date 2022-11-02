@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.custom-grid {
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+}
+
+.grid-perso-left-part {
+    grid-template-columns: 2fr 1fr;
+}
+
+.down-color {
+    filter: invert(55%) sepia(94%) saturate(6510%) hue-rotate(346deg) brightness(99%) contrast(94%)
+}
+
+.up-color {
+    filter: invert(76%) sepia(45%) saturate(970%) hue-rotate(60deg) brightness(96%) contrast(100%);
+}
