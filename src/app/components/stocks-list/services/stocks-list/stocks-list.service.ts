@@ -17,9 +17,8 @@ export class StocksListService {
   }
 
   public loadStockList(stockList: Stock[]): void {
-    const stockListHttpCall$ = _.map(stockList, stock => this.generator.generateStock(stock));
-    merge(...stockListHttpCall$)
-      .subscribe((stock) => this.updateStockList(stock));
+    const stockListHttpCall$ = _.map(stockList, (stock) => this.generator.generateStock(stock.symbol));
+    merge(...stockListHttpCall$).subscribe((stock) => this.updateStockList(stock));
   }
 
   public getStockList$(): Observable<Stock[]> {
@@ -35,9 +34,15 @@ export class StocksListService {
   }
 
   public updateStockList(stock: Stock): void {
-    const newStockList = this.getStockList();
+    var newStockList = this.getStockList();
     const id = _.findIndex(newStockList, { symbol: stock.symbol });
     newStockList[id] = stock;
-    this.store.setStocksList(newStockList);    
+    this.store.setStocksList(newStockList);
+  }
+
+  public addStock(symbol: string) {
+    const stockList = this.getStockList();
+    this.setStockList([...stockList, { symbol: symbol, isLoaded: false }]);
+    this.generator.generateStock(symbol).subscribe((newStock) => this.updateStockList(newStock));
   }
 }

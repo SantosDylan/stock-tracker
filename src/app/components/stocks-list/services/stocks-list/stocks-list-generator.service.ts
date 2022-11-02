@@ -12,10 +12,10 @@ export class StockListGeneratorService {
     return _.map(enteredSymbols, (symbol) => ({ symbol: symbol, isLoaded: false }));
   }
 
-  public generateStock(stock: Stock): Observable<Stock> {
-    return combineLatest({ symbolLookup: this.api.getSymbolLookup(stock.symbol), quote: this.api.getQuote(stock.symbol) }).pipe(
+  public generateStock(symbol: string): Observable<Stock> {
+    return combineLatest({ symbolLookup: this.api.getSymbolLookup(symbol), quote: this.api.getQuote(symbol) }).pipe(
       map(({ symbolLookup, quote }) => ({
-        ...stock,
+        symbol: symbol,
         isLoaded: true,
         data: { name: symbolLookup.result[0].description, currentPrice: quote.c, percentChange: quote.dp, highPrice: quote.h, openingPrice: quote.o },
       }))
