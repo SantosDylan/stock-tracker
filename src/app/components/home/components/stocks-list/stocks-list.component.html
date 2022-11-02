@@ -1,21 +1,21 @@
-<div *ngIf="stockList$ | async as stockList" class="grid gap-4 custom-grid w-full">
-  <div class="rounded-xl bg-slate-50 p-4 shadow-lg w-full" *ngFor="let stock of stockList">
+<div *ngIf="stockList$ | async as stockList" class="custom-grid grid w-full gap-4">
+  <div class="w-full rounded-xl bg-slate-50 p-4 shadow-lg" *ngFor="let stock of stockList">
     <span *ngIf="!stock.isLoaded">Loading ...</span>
     <div *ngIf="stock.isLoaded" class="flex flex-col gap-4">
       <div class="flex justify-between">
-        <div class="flex gap-2 items-center">
-          <span class="text-xs px-2 bg-purple-400 flex items-center justify-center rounded-full text-white w-fit h-fit">{{ stock.symbol }}</span>
+        <div class="flex items-center gap-2">
+          <span class="flex h-fit w-fit items-center justify-center rounded-full bg-purple-400 px-2 text-xs text-white">{{ stock.symbol }}</span>
           <span class="text-xl text-slate-600">{{ stock.data?.name }}</span>
         </div>
         <div [id]="'remove' + stock.symbol" (click)="removeStock(stock)">
           <img class="w-6 cursor-pointer transition hover:scale-125" src="assets/icons/close.svg" />
         </div>
       </div>
-      <div class="grid grid-perso-left-part">
+      <div class="grid-perso-left-part grid">
         <div class="grid grid-cols-2">
           <div class="flex flex-col">
             <span class="font-bold">Change today:</span>
-            <span>{{(stock.data?.percentChange || 0) > 0 ? '+' : ''}}{{ stock.data?.percentChange | number: '1.2-2' }}%</span>
+            <span>{{ (stock.data?.percentChange || 0) > 0 ? '+' : '' }}{{ stock.data?.percentChange | number: '1.2-2' }}%</span>
           </div>
           <div class="flex flex-col">
             <span class="font-bold">Opening price:</span>
@@ -30,14 +30,18 @@
             <span>{{ stock.data?.highPrice | currency }}</span>
           </div>
         </div>
-        <div class="flex flex-col gap-2 items-center justify-center">
+        <div class="flex flex-col items-center justify-center gap-2">
           <div *ngIf="(stock.data?.percentChange || 0) > 0">
             <img class="up-color" src="assets/icons/trending_up.svg" />
           </div>
           <div *ngIf="(stock.data?.percentChange || 0) < 0">
             <img class="down-color" src="assets/icons/trending_down.svg" />
           </div>
-          <span  [routerLink]="['/sentiment', stock.symbol]" [id]="'sentiment' + stock.symbol" class="text-sm text-purple-400 cursor-pointer transition hover:scale-110" >See sentiment details</span>
+          <span
+            [routerLink]="['/sentiment', stock.symbol]"
+            [id]="'sentiment' + stock.symbol"
+            class="cursor-pointer text-sm text-purple-400 transition hover:scale-110"
+            >See sentiment details</span>
         </div>
         <div></div>
       </div>
