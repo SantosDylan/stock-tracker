@@ -36,11 +36,11 @@ export class StocksListService {
 
   public removeStock(removedStock: Stock): void {
     const enteredSymbols = this.localStorage.get('entered_symbols');
-    _.remove(enteredSymbols, symbol => symbol === removedStock.symbol);
+    _.remove(enteredSymbols, (symbol) => symbol === removedStock.symbol);
     this.localStorage.set('entered_symbols', enteredSymbols);
 
     const stocksList = this.getStockList();
-    _.remove(stocksList, stock => stock === removedStock);
+    _.remove(stocksList, (stock) => stock === removedStock);
     this.setStockList(stocksList);
   }
 

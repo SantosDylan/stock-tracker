@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Stock } from 'src/app/shared/interfaces/stock.interface';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class StocksListStoreService {
-    private readonly stocksList$ = new BehaviorSubject<Stock[]>([]);
+  private readonly stocksList$ = new BehaviorSubject<Stock[]>([]);
 
   constructor() {}
 
@@ -19,5 +19,4 @@ export class StocksListStoreService {
   public setStocksList(stocksList: Stock[]): void {
     this.stocksList$.next(stocksList);
   }
-    
 }
