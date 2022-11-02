@@ -6,10 +6,9 @@ import { StocksListService } from './components/stocks-list/services/stocks-list
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   public stockInput: string = '';
 
   constructor(private localStorage: LocalStorageService, private stockList: StocksListService) {}
@@ -21,8 +20,7 @@ export class HomeComponent implements OnInit {
 
     if (_.find(currentEnteredSymbols, (enteredSymbol) => enteredSymbol === stockInput)) {
       alert(`${stockInput} already exists in stock list`);
-    } 
-    else {
+    } else {
       if (currentEnteredSymbols) {
         this.localStorage.set('entered_symbols', [...currentEnteredSymbols, stockInput]);
       } else {
@@ -30,8 +28,7 @@ export class HomeComponent implements OnInit {
       }
       this.stockList.addStock(stockInput);
     }
-    
+
     this.stockInput = '';
   }
-
 }
