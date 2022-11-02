@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Stock } from 'src/app/shared/interfaces/stock.interface';
 import { StocksListService } from './services/stocks-list/stocks-list.service';
@@ -11,7 +12,7 @@ import { StocksListService } from './services/stocks-list/stocks-list.service';
 export class StocksListComponent implements OnInit {
   public stockList$ : Observable<Stock[]>
 
-  constructor(private stockList: StocksListService) {
+  constructor(private stockList: StocksListService, private router: Router) {
     this.stockList$ = this.stockList.getStockList$();
   }
 

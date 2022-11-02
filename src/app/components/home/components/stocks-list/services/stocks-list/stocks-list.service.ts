@@ -48,7 +48,7 @@ export class StocksListService {
     return this.store.getStocksList$();
   }
 
-  private getStockList(): Stock[] {
+  public getStockList(): Stock[] {
     return this.store.getStocksList();
   }
 
