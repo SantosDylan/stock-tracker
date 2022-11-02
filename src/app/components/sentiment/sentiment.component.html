@@ -7,9 +7,9 @@
       </div>
     </div>
     <div class="grid grid-cols-3 gap-2 divide-x divide-slate-300">
-      <div *ngFor="let data of sentiment.data" class="flex flex-col gap-2 p-2 w-full">
+      <div *ngFor="let data of sentiment.data" class="flex w-full flex-col gap-2 p-2">
         <div class="flex items-center justify-between">
-          <span>{{ data.month | month}} {{ data.year }}</span>
+          <span>{{ data.month | month }} {{ data.year }}</span>
           <div *ngIf="(data.change || 0) > 0">
             <img class="up-color" src="assets/icons/trending_up.svg" />
           </div>
@@ -20,11 +20,11 @@
         <div class="flex gap-4">
           <div class="flex flex-col">
             <span class="font-bold">Change</span>
-            <span>{{(data.change || 0) > 0 ? '+' : ''}}{{ data.change }}</span>
+            <span>{{ (data.change || 0) > 0 ? '+' : '' }}{{ data.change }}</span>
           </div>
           <div class="flex flex-col">
             <span class="font-bold">MSPR</span>
-            <span>{{ data.mspr | number:'1.2-2' }}</span>
+            <span>{{ data.mspr | number: '1.2-2' }}</span>
           </div>
         </div>
       </div>
@@ -32,3 +32,4 @@
   </ng-container>
   <ng-template #loading>Loading...</ng-template>
 </div>
+<button id="backBtn" [routerLink]="['/']" class="rounded-full bg-purple-400 py-1 px-4 text-white transition hover:scale-110">Back to stocks list</button>
