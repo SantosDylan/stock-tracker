@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MonthPipe } from './pipes/month.pipe';
 import { SentimentComponent } from './sentiment.component';
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
   export class SentimentRoutingModule { }
 
 @NgModule({
-    declarations: [SentimentComponent],
+    declarations: [SentimentComponent, MonthPipe],
     imports: [CommonModule, SentimentRoutingModule],
     providers: [],
 })
