@@ -1,4 +1,22 @@
-<div class="h-9rounded-xl flex w-2/5 items-center justify-center rounded-xl bg-slate-50 p-4 shadow-lg"></div>
-
-<ng-container *ngIf="sentiment$ | async as sentiment; else loading"></ng-container>
-<ng-template #loading>Loading...</ng-template>
+<div class="h-fit w-2/5 rounded-xl bg-slate-50 p-4 shadow-lg">
+  <ng-container *ngIf="sentiment$ | async as sentiment; else loading">
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        <span class="flex h-fit w-fit items-center justify-center rounded-full bg-purple-400 px-2 text-xs text-white">{{ sentiment.symbol }}</span>
+        <span class="text-xl text-slate-600">{{ sentiment.name }}</span>
+      </div>
+    </div>
+    <div class="grid grid-cols-3">
+        <div *ngFor="let data of sentiment.data" class="flex justify-between">
+            <span>{{data.month}} {{data.year}}</span>
+            <div *ngIf="(data.change || 0) > 0">
+                <img class="up-color" src="assets/icons/trending_up.svg" />
+              </div>
+              <div *ngIf="(data.change || 0) < 0">
+                <img class="down-color" src="assets/icons/trending_down.svg" />
+              </div>
+        </div>
+    </div>
+  </ng-container>
+  <ng-template #loading>Loading...</ng-template>
+</div>
