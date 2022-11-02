@@ -19,4 +19,8 @@ export class StocksListComponent implements OnInit {
     this.stockList.initStockList();
   }
 
+  public removeStock(stock: Stock) {
+    this.stockList.removeStock(stock);
+  }
+
 }
