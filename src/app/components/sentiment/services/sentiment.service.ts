@@ -4,7 +4,6 @@ import { combineLatest, map, Observable } from 'rxjs';
 import { Sentiment } from 'src/app/shared/interfaces/sentiment.interface';
 import { ApiService } from 'src/app/shared/services/api/api.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class SentimentService {
   constructor(private api: ApiService) {}
@@ -30,7 +29,6 @@ export class SentimentService {
     const threeMonth = 3 * (day * 30);
     const threeMonthAgo = today.getTime() - threeMonth;
 
-    return {from: moment(new Date(threeMonthAgo)).format('YYYY-MM-DD'), to: moment(new Date(today)).format('YYYY-MM-DD')}
+    return { from: moment(new Date(threeMonthAgo)).format('YYYY-MM-DD'), to: moment(new Date(today)).format('YYYY-MM-DD') };
   }
-
 }

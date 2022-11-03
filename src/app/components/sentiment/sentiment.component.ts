@@ -16,6 +16,5 @@ export class SentimentComponent implements OnInit {
     this.sentiment$ = this.sentiment.getSentiment(this.route.snapshot.params['symbol']);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
